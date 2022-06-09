@@ -1,0 +1,48 @@
+.container {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(255, 111, 0);
+  left: 0;
+  top: 0;
+  display: none;
+  z-index: 3;
+}
+
+.closeContainer {
+  position: fixed;
+  top: 0.2rem;
+  right: 0.2rem;
+  width: 2rem;
+  height: 2rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+}
+
+.contentContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  overflow: auto;
+  width: 90vw;
+  height: 100vh;
+  padding: 0 5vw 0 5vw;
+}
+
+.container1 {
+  background-color: red;
+  height: 90vh;
+  flex-grow: 1.2;
+}
+
+.container2 {
+  background-color: blue;
+  height: 90vh;
+  flex-grow: 2;
+}

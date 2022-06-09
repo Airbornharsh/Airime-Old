@@ -1,0 +1,17 @@
+.container {
+  z-index: 3;
+  display: flex;
+  /* width: 17vw; */
+  width: 16rem;
+  /* max-width: 20vw; */
+  /* min-width: 15vw; */
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin: 1rem 0 0 0;
+}
+
+.container select {
+  height: 2rem;
+  width: 6rem;
+}

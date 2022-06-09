@@ -1,0 +1,31 @@
+.container {
+  height: 13.6rem;
+  width: 12rem;
+  background-color: rgb(255, 255, 255);
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  text-overflow: clip;
+  margin: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0.4rem 0 0 0;
+}
+
+.container img {
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  height: 8.5rem;
+}
+
+.container h2{
+  margin: 0.5rem 0 0 0;
+}
+
+.container button{
+  margin: 0.5rem 0 0 0;
+  background-color: red;
+  border: 1px solid black;
+  padding: 0.3rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

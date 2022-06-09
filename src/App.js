@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Body from "./components/Body/Body";
+import Header from "./components/Header/Header";
 
 function App() {
+  const [search, setSearch] = useState("");
+  const [typeFilter, setTypeFilter] = useState("anime");
+  const [genreFilter, setGenreFilter] = useState("");
+
+  const SearchValue = (data) => {
+    setSearch(data);
+  };
+
+  const TypeFilterValue = (data) => {
+    setTypeFilter(data);
+  };
+
+  const GenreFilterChange = (data) => {
+    setGenreFilter(data);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header
+        onSearchValue={SearchValue}
+        onGenreFilterChange={GenreFilterChange}
+        onTypeFilterValue={TypeFilterValue}
+      />
+      <Body search={search} typeFilter={typeFilter} genreFilter={genreFilter} />
     </div>
   );
 }

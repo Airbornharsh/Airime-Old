@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 16rem;
+
+}
+
+.container input{
+width: 12rem;
+height: 2rem;
+}
+
+.container button{
+width: 4rem;
+height: 2.15rem;
+border: 1px;
+}
