@@ -4,7 +4,7 @@ import SearchContext from "../../Helper/Context/Search/SearchContext";
 
 import classes from "./SearchResults.module.css";
 
-const SearchResults = (props) => {
+const SearchResults = () => {
   const [searchedDatas, setSearchedDatas] = useState(null);
   const [index, setIndex] = useState(0);
   const [number, setNumber] = useState(5);
