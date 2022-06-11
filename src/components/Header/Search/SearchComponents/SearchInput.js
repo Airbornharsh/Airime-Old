@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext } from "react";
-import check from "../../../check";
+import { useState, useContext } from "react";
 import SearchContext from "../../../Helper/Context/Search/SearchContext";
 import classes from "./SearchInput.module.css";
 

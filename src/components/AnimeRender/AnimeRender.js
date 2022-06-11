@@ -2,7 +2,7 @@ import { createRef, useContext, useEffect } from "react";
 import AnimeRenderContext from "../Helper/Context/AnimeRender/AnimeRenderContext";
 import classes from "./AnimeRender.module.css";
 
-const AnimeRender = (props) => {
+const AnimeRender = () => {
   const containerRef = createRef();
   const AnimeRenderCtx = useContext(AnimeRenderContext);
 
@@ -71,7 +71,7 @@ const AnimeRender = (props) => {
           alert("Error, check console");
         });
     }
-  }, [AnimeRenderCtx.httpRequest]);
+  }, [AnimeRenderCtx,containerRef]);
 
   const CloseContainer = () => {
     AnimeRenderCtx.setDisplay("none");
@@ -92,7 +92,7 @@ const AnimeRender = (props) => {
           <div className={classes.container1}>
             <img
               src={AnimeRenderCtx.httpData.coverImage.extraLarge}
-              alt="Image"
+              alt="cover"
             />
             <h2>{AnimeRenderCtx.httpData.title.english}</h2>
             <p>{AnimeRenderCtx.httpData.description}</p>
