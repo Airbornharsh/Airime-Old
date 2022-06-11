@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import SearchContext from "../../../Helper/Context/Search/SearchContext";
 import classes from "./SearchOptions.module.css";
 

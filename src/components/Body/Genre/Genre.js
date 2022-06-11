@@ -21,11 +21,6 @@ const Genre = (props) => {
       setNumber(number + 1);
     }
   };
-
-  const Explored = (data) => {
-    props.onExplored(data);
-  };
-
   return (
     <React.Fragment>
       <div className={classes.container}>

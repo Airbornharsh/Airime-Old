@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import AnimeRender from "../AnimeRender/AnimeRender";
 import classes from "./Body.module.css";
 import Genre from "./Genre/Genre";

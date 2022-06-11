@@ -5,23 +5,23 @@ import classes from "./TopManga.module.css";
 const TopManga = () => {
   const [topMangaDatas, setTopMangaDatas] = useState([]);
 
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Host": "jikan1.p.rapidapi.com",
-      "X-RapidAPI-Key": "40c256fd36msh733f84981819a1fp108278jsn4e817c0e643f",
-    },
-  };
-
   useEffect(() => {
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Host": "jikan1.p.rapidapi.com",
+        "X-RapidAPI-Key": "40c256fd36msh733f84981819a1fp108278jsn4e817c0e643f",
+      },
+    };
+
     fetch("https://jikan1.p.rapidapi.com/top/manga/1/upcoming", options)
       .then((response) => response.json())
       .then((response) => {
         setTopMangaDatas(response.top);
       })
-        .catch((err) => {
-            setTopMangaDatas(null);
-        });
+      .catch((err) => {
+        setTopMangaDatas(null);
+      });
   }, []);
 
   return (

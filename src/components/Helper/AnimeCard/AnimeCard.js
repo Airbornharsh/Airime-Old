@@ -18,10 +18,10 @@ const AnimeCard = (props) => {
       </div>
       <div className={classes.dataContainer}>
         <h3>
-          <a>{props.titleEnglish}</a>
+          {props.titleEnglish}
         </h3>
         <h3>
-          <a>({props.titleRomaji})</a>
+          ({props.titleRomaji})
         </h3>
         <p>{props.description}</p>
       </div>
