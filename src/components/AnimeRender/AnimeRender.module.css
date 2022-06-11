@@ -1,12 +1,15 @@
+.none {
+  display: none;
+}
+
 .container {
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: rgb(255, 255, 255);
   background-color: #219c66;
   left: 0;
   top: 0;
-  display: none;
+  display: block;
   z-index: 3;
 }
 
@@ -79,4 +82,66 @@
   height: 90vh;
   flex-grow: 2;
   max-width: 50vw;
+}
+
+.loadingContainer {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: #219c66;
+  left: 0;
+  top: 0;
+  color: white;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingContainer span {
+  border-radius: 50%;
+  border: 10px solid white;
+  height: 150px;
+  width: 150px;
+  animation: rotation 6s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotateZ(0deg);
+    border-color: rgb(255, 0, 0) white white white;
+  }
+  20% {
+    transform: rotateZ(360deg);
+  }
+  20.1% {
+    transform: rotateZ(0deg);
+    border-color: rgb(246, 255, 0) white white white;
+  }
+  40% {
+    transform: rotateZ(360deg);
+  }
+  40.1% {
+    transform: rotateZ(0deg);
+    border-color: rgb(43, 255, 0) white white white;
+  }
+  60% {
+    transform: rotateZ(360deg);
+  }
+  60.1% {
+    transform: rotateZ(0deg);
+    border-color: rgb(0, 153, 255) white white white;
+  }
+  80% {
+    transform: rotateZ(360deg);
+  }
+  80.1% {
+    transform: rotateZ(0deg);
+    border-color: rgb(255, 0, 230) white white white;
+  }
+  100% {
+    transform: rotateZ(360deg);
+    border-color: rgb(255, 0, 0) white white white;
+
+  }
 }
