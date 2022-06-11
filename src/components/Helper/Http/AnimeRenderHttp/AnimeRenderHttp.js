@@ -1,12 +1,12 @@
-// https://anilist.github.io/ApiV2-GraphQL-Docs/
-// https://anilist.co/graphiql
+import { useContext } from "react";
+import AnimeRenderContext from "../../Context/AnimeRender/AnimeRenderContext";
 
 let Data;
 
-const check = (props) => {
+const AnimeRenderHttp = (id) => {
   let query = `
   query ($id: Int) {
-    Media(type: ANIME, id:6033) {
+    Media(type: ANIME, id:$id) {
       title {
         romaji
         english
@@ -30,9 +30,8 @@ const check = (props) => {
   `;
 
   let variables = {
-    id: 11741,
+    id: id,
   };
-
 
   const url = "https://graphql.anilist.co",
     options = {
@@ -47,7 +46,6 @@ const check = (props) => {
       }),
     };
 
-  // Make the HTTP Api request
   fetch(url, options)
     .then((response) => {
       return response.json().then((json) => {
@@ -55,15 +53,15 @@ const check = (props) => {
       });
     })
     .then((response) => {
-      console.log(response);
-      Data = response;
+      console.log(response.data.Media);
+      Data = response.data.Media;
     })
     .catch((err) => {
       alert("Error, check console");
-      console.error(err);
+      Data = null;
     });
 
-  return null;
+  return Data;
 };
 
-export default check;
+export default AnimeRenderHttp;

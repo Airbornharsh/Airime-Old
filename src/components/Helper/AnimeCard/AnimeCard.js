@@ -1,22 +1,14 @@
-import React from "react";
-import check from "../../check";
+import React, { useContext } from "react";
+import AnimeTitleContext from "../Context/AnimeRender/AnimeRenderContext";
 import classes from "./AnimeCard.module.css";
-import AnimeRender from "../../AnimeRender/AnimeRender";
 
 const AnimeCard = (props) => {
-  let temp;
-  if (props.endDate) {
-    temp = "(" + props.startDate + " - " + props.endDate + ")";
-  } else {
-    if (props.startDate) {
-      temp = "(" + props.startDate + " - Continuing)";
-    } else {
-      temp = "";
-    }
-  }
+  const AnimeRenderCtx = useContext(AnimeTitleContext);
 
   const AnimeRenderFn = () => {
-    props.onAnimeRenderFn("block",props.title);
+    AnimeRenderCtx.setId(props.id);
+    AnimeRenderCtx.setDisplay("block");
+    AnimeRenderCtx.setHttpRequest(true);
   };
 
   return (
@@ -26,11 +18,12 @@ const AnimeCard = (props) => {
       </div>
       <div className={classes.dataContainer}>
         <h3>
-          <a>
-            {props.rank}. {props.title}
-          </a>
+          <a>{props.titleEnglish}</a>
         </h3>
-        {temp ? <span className={classes.date}>{temp}</span> : ""}
+        <h3>
+          <a>({props.titleRomaji})</a>
+        </h3>
+        <p>{props.description}</p>
       </div>
     </li>
   );

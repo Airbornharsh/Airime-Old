@@ -1,18 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import SearchContext from "../../../Helper/Context/Search/SearchContext";
 import classes from "./SearchOptions.module.css";
 
 const SearchOptions = (props) => {
-  const [type, setType] = useState("anime");
-  const [genre, setGenre] = useState("");
+  const SearchCtx = useContext(SearchContext);
 
   const onTypeFilterChange = (event) => {
-    setType(event.target.value);
-    props.onTypeFilterValue(event.target.value);
+    SearchCtx.setType(event.target.value);
   };
 
   const onGenreFilterChange = (event) => {
-    setGenre(event.target.value);
-    props.onGenreFilterValue(event.target.value);
+    SearchCtx.setGenre(event.target.value);
   };
 
   return (

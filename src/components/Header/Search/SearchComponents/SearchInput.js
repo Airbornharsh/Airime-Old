@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import check from "../../../check";
+import SearchContext from "../../../Helper/Context/Search/SearchContext";
 import classes from "./SearchInput.module.css";
 
 const SearchInput = (props) => {
   const [Search, setSearch] = useState(null);
+  const SearchCtx = useContext(SearchContext); 
 
 
   const Searched = (event) => {
     event.preventDefault();
-    props.onSearchValue(Search);
+    SearchCtx.setSearch(Search);
   };
 
   const SearchChange = (event) => {

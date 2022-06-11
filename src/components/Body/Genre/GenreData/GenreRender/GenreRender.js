@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AnimeCard from "../../../../Helper/AnimeCard/AnimeCard";
+import GenreContext from "../../../../Helper/Context/Genre/GenreContext";
 
 import classes from "./GenreRender.module.css";
 
@@ -8,31 +9,91 @@ const GenreRender = (props) => {
   const [index, setIndex] = useState(0);
   const [number, setNumber] = useState(5);
 
-  // setType(props.type);
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "167893f34dmshc16a73bcbe697e4p1d764bjsn28dcb14a62cf",
-      "X-RapidAPI-Host": "jikan1.p.rapidapi.com",
-    },
-  };
+  const GenreCtx = useContext(GenreContext);
+
+  // const options = {
+  //   method: "GET",
+  //   headers: {
+  //     "X-RapidAPI-Key": "167893f34dmshc16a73bcbe697e4p1d764bjsn28dcb14a62cf",
+  //     "X-RapidAPI-Host": "jikan1.p.rapidapi.com",
+  //   },
+  // };
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     const link =
+  //       "https://jikan1.p.rapidapi.com/genre/anime/" + props.genreId + "/1";
+
+  //     fetch(link, options)
+  //       .then((response) => response.json())
+  //       .then((response) => {
+  //         setGenreRenderDatas(response.anime);
+  //       })
+  //       .catch((err) => {
+  //         setGenreRenderDatas(null);
+  //         console.error(err);
+  //       });
+  //   }, 1);
+  // }, [props.genre]);
 
   useEffect(() => {
-    setTimeout(() => {
-      const link =
-        "https://jikan1.p.rapidapi.com/genre/anime/" + props.genreId + "/1";
+    let query = `
+    query ($page: Int,$perPage: Int,$genre:String) {
+      Page(page: $page,perPage: $perPage) {
+        media(type: ANIME, genre: $genre) {
+          id
+          title {
+            romaji
+            english
+            native
+          }
+          coverImage {
+            extraLarge
+            large
+            medium
+            color
+          }
+          description
+          bannerImage
+          genres
+        }
+      }
+    }
+    
+    `;
 
-      fetch(link, options)
-        .then((response) => response.json())
-        .then((response) => {
-          setGenreRenderDatas(response.anime);
-        })
-        .catch((err) => {
-          setGenreRenderDatas(null);
-          console.error(err);
+    let variables = {
+      page: 1,
+      perPage: 50,
+      genre: GenreCtx.genre,
+    };
+
+    const url = "https://graphql.anilist.co",
+      options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          query: query,
+          variables: variables,
+        }),
+      };
+
+    fetch(url, options)
+      .then((response) => {
+        return response.json().then((json) => {
+          return response.ok ? json : Promise.reject(json);
         });
-    }, 1);
-  }, [props.genre]);
+      })
+      .then((response) => {
+        setGenreRenderDatas(response.data.Page.media);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [GenreCtx.genre]);
 
   const leftClicked = () => {
     if (index > 0) {
@@ -48,11 +109,6 @@ const GenreRender = (props) => {
     }
   };
 
-  const AnimeRenderFn = (display, title) => {
-    console.log(display);
-    props.onAnimeRenderFn(display, title);
-  };
-
   return (
     <React.Fragment>
       {genreRenderDatas ? (
@@ -63,22 +119,17 @@ const GenreRender = (props) => {
           <button onClick={rightClicked} className={classes.right}>
             {">"}
           </button>
-          <h2>{props.name}</h2>
+          <h2>{GenreCtx.name}</h2>
           <ul>
             {genreRenderDatas.slice(index, number).map((genreRenderData) => {
               return (
                 <AnimeCard
-                  key={genreRenderData.title}
-                  rank={genreRenderData.rank}
-                  title={genreRenderData.title}
-                  url={genreRenderData.url}
-                  imageUrl={genreRenderData.image_url}
-                  type={genreRenderData.type}
-                  episodes={genreRenderData.episodes}
-                  startDate={genreRenderData.start_date}
-                  endDate={genreRenderData.end_date}
-                  genres={genreRenderData.genres}
-                  onAnimeRenderFn={AnimeRenderFn}
+                  key={genreRenderData.id}
+                  id={genreRenderData.id}
+                  titleEnglish={genreRenderData.title.english}
+                  titleRomaji = {genreRenderData.title.romaji}
+                  imageUrl={genreRenderData.coverImage.large}
+                  description={genreRenderData.description}
                 />
               );
             })}

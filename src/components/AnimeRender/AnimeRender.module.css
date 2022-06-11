@@ -2,7 +2,7 @@
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: rgb(255, 111, 0);
+  background-color: rgb(255, 255, 255);
   left: 0;
   top: 0;
   display: none;
@@ -36,13 +36,43 @@
 }
 
 .container1 {
-  background-color: red;
+  background-color: black;
   height: 90vh;
   flex-grow: 1.2;
+  max-width: 38vw;
+  padding: 0 1vw 0 1vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+.container1 img{
+  width: 38vw;
+  height: 50vh;
+  object-fit: cover;
+  margin: 2vh 0 0 0;
+}
+
+.container1 h2 {
+  margin: 2vh 0 0 0;
+  color: Red;
+  font-size: 1.2rem;
+}
+
+.container1 p{
+  margin: 2vh 0 0 0;
+  color: white;
+  font-size: 0.7rem;
+  text-align: center;
+  height: 25vh;
+  overflow: hidden;
 }
 
 .container2 {
-  background-color: blue;
+  background-color: rgb(223, 0, 0);
   height: 90vh;
   flex-grow: 2;
+  max-width: 50vw;
 }
