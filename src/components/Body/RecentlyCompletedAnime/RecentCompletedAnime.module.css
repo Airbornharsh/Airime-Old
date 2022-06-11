@@ -1,0 +1,54 @@
+.container {
+  /* width: 100vw; */
+  overflow: hidden;
+  margin: 0rem 0 1rem 0;
+  padding: 1rem 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container h2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container ul {
+  height: 15rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+  flex-wrap: wrap;
+  /* background-color: rgb(228, 228, 228); */
+  /* border-top: 1px solid black; */
+  /* border-bottom: 1px solid black; */
+}
+
+.left {
+  position: absolute;
+  left: 0;
+  height: 2rem;
+  width: 2rem;
+  z-index: 2;
+  margin-top: 2rem;
+  font-size: 2rem;
+  background-color: transparent;
+  border: 0px;
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+.right {
+  position: absolute;
+  right: 0;
+  height: 2rem;
+  width: 2rem;
+  z-index: 2;
+  margin-top: 2rem;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 2rem;
+  border: 0px;
+  color: whitesmoke;
+}

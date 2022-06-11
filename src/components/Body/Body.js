@@ -7,6 +7,7 @@ import SearchResults from "./SearchResults/SearchResults";
 import Top from "./Top/Top";
 import AnimeTitleProvider from "../Helper/Context/AnimeRender/AnimeRenderProvider";
 import SearchContext from "../Helper/Context/Search/SearchContext";
+import RecentCompletedAnime from "./RecentlyCompletedAnime/RecentCompletedAnime";
 
 const Body = (props) => {
   const SearchCtx = useContext(SearchContext);
@@ -16,9 +17,10 @@ const Body = (props) => {
     <AnimeTitleProvider>
       <div className={classes.container}>
         {SearchCtx.search ? <SearchResults /> : ""}
+        <RecentCompletedAnime />
         <Top />
-        <Genre/>
-        <GenreRender/>
+        <Genre />
+        <GenreRender />
         <AnimeRender />
       </div>
     </AnimeTitleProvider>

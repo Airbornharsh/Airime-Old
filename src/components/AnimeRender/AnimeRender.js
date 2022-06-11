@@ -1,13 +1,22 @@
-import { createRef, useContext, useEffect } from "react";
+import { createRef, useContext, useEffect, useState } from "react";
 import AnimeRenderContext from "../Helper/Context/AnimeRender/AnimeRenderContext";
 import classes from "./AnimeRender.module.css";
 
 const AnimeRender = () => {
+  const [httpData, setHttpData] = useState("");
+  const [display, setDisplay] = useState("none");
   const containerRef = createRef();
   const AnimeRenderCtx = useContext(AnimeRenderContext);
 
   useEffect(() => {
-    containerRef.current.style.display = AnimeRenderCtx.display;
+    if (display === "block") {
+      containerRef.current.style.display = "block";
+    } else {
+      containerRef.current.style.display = "none";
+    }
+  }, [containerRef, display]);
+
+  useEffect(() => {
     if (AnimeRenderCtx.httpRequest) {
       let query = `
       query ($id: Int) {
@@ -64,21 +73,19 @@ const AnimeRender = () => {
           });
         })
         .then((response) => {
-          AnimeRenderCtx.setHttpData(response.data.Media);
-          console.log(response.data.Media);
+          setHttpData(response.data.Media);
+          setDisplay("block");
         })
         .catch((err) => {
           alert("Error, check console");
         });
     }
-  }, [AnimeRenderCtx,containerRef]);
+  }, [AnimeRenderCtx.httpRequest, AnimeRenderCtx.id]);
 
   const CloseContainer = () => {
-    AnimeRenderCtx.setDisplay("none");
-    AnimeRenderCtx.setHttpData("");
     AnimeRenderCtx.setHttpRequest(false);
     AnimeRenderCtx.setId(null);
-    containerRef.current.style.display = "none";
+    setDisplay("none");
   };
 
   if (AnimeRenderCtx.httpData) {
@@ -87,15 +94,12 @@ const AnimeRender = () => {
 
   return (
     <div ref={containerRef} className={classes.container}>
-      {AnimeRenderCtx.httpData ? (
+      {httpData ? (
         <div className={classes.contentContainer}>
           <div className={classes.container1}>
-            <img
-              src={AnimeRenderCtx.httpData.coverImage.extraLarge}
-              alt="cover"
-            />
-            <h2>{AnimeRenderCtx.httpData.title.english}</h2>
-            <p>{AnimeRenderCtx.httpData.description}</p>
+            <img src={httpData.coverImage.extraLarge} alt="cover" />
+            <h2>{httpData.title.english}</h2>
+            <p>{httpData.description}</p>
           </div>
           <div className={classes.container2}></div>
         </div>

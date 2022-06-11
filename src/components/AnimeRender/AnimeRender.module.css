@@ -3,6 +3,7 @@
   height: 100vh;
   width: 100vw;
   background-color: rgb(255, 255, 255);
+  background-color: #219c66;
   left: 0;
   top: 0;
   display: none;
@@ -48,7 +49,7 @@
   color: white;
 }
 
-.container1 img{
+.container1 img {
   width: 38vw;
   height: 50vh;
   object-fit: cover;
@@ -57,21 +58,24 @@
 
 .container1 h2 {
   margin: 2vh 0 0 0;
-  color: Red;
+  color: rgb(42, 154, 119);
   font-size: 1.2rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.container1 p{
+.container1 p {
   margin: 2vh 0 0 0;
   color: white;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   text-align: center;
   height: 25vh;
   overflow: hidden;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande";
 }
 
 .container2 {
   background-color: rgb(223, 0, 0);
+  background-color: rgb(46, 89, 95);
   height: 90vh;
   flex-grow: 2;
   max-width: 50vw;

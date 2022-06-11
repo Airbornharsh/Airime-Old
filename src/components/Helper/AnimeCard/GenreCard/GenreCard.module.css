@@ -1,7 +1,8 @@
 .container {
   height: 13.6rem;
   width: 12rem;
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
+  background-color: rgb(46, 89, 95);
   list-style: none;
   display: flex;
   justify-content: flex-start;
@@ -10,12 +11,14 @@
   text-overflow: clip;
   margin: 0.5rem 1rem 0.5rem 1rem;
   padding: 0.4rem 0 0 0;
+  border-radius: 0.2rem;
 }
 
 .container img {
   aspect-ratio: 4/3;
   object-fit: cover;
   height: 8.5rem;
+  border-radius: 0.2rem;
 }
 
 .container h2{
@@ -24,8 +27,10 @@
 
 .container button{
   margin: 0.5rem 0 0 0;
-  background-color: red;
+  background-color: rgb(255, 255, 255);
   border: 1px solid black;
   padding: 0.3rem;
+  border-radius: 0.3rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 700;
 }

@@ -4,7 +4,6 @@ import AnimeRenderContext from "./AnimeRenderContext";
 const AnimeTitleProvider = (props) => {
   const [id, setId] = useState("");
   const [display, setDisplay] = useState("none");
-  const [httpData, setHttpData] = useState();
   const [httpRequest, setHttpRequest] = useState(false);
 
   const settingId = (data) => {
@@ -15,10 +14,6 @@ const AnimeTitleProvider = (props) => {
     setDisplay(data);
   };
 
-  const settingHttpData = (data) => {
-    setHttpData(data);
-  };
-
   const settingHttpRequest = (data) => {
     setHttpRequest(data);
   };
@@ -26,11 +21,9 @@ const AnimeTitleProvider = (props) => {
   const animeRenderContextData = {
     id: id,
     display: display,
-    httpData: httpData,
     httpRequest: httpRequest,
     setId: settingId,
     setDisplay: settingDisplay,
-    setHttpData: settingHttpData,
     setHttpRequest: settingHttpRequest,
   };
 
