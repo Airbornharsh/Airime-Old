@@ -54,8 +54,8 @@
 
 .container1 img {
   width: 38vw;
-  height: 50vh;
-  object-fit: cover;
+  height: 60vh;
+  object-fit: contain;
   margin: 2vh 0 0 0;
 }
 
@@ -71,7 +71,7 @@
   color: white;
   font-size: 0.68rem;
   text-align: center;
-  height: 25vh;
+  height: 15vh;
   overflow: hidden;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande";
 }

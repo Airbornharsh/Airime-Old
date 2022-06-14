@@ -12,6 +12,12 @@
   padding: 0 0 0 0.5rem;
   color: rgb(255, 255, 255);
   border-radius: 0.3rem;
+  position: relative;
+}
+
+.imgContainer{
+  height: 13rem;
+overflow: hidden;
 }
 
 .imgContainer img {
@@ -19,6 +25,12 @@
   object-fit: cover;
   height: 13rem;
   border-radius: 0.2rem;
+  transition: all 0.4s ease-in;
+  /* overflow: hidden; */
+}
+
+.imgContainer img:hover {
+  transform: scale(1.07);
 }
 
 .dataContainer {
@@ -35,7 +47,7 @@
 .dataContainer h3 {
   text-decoration: none;
   font-size: 0.8rem;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .date {
@@ -56,7 +68,7 @@
   justify-content: flex-start;
 }
 
-.date p{
+.date p {
   margin: 0 0 0 0.2rem;
 }
 
@@ -72,4 +84,16 @@
 .date {
   font-size: 0.6rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.addFavourite{
+  position: absolute;
+  right: 0.2rem;
+  top: 0.2rem;
+}
+
+.addFavourite img{
+  width: 1.7rem;
+  height: 1.7rem;
+  cursor: pointer;
 }

@@ -104,7 +104,6 @@ const AnimeRender = () => {
     <Fragment>
       {isLoading ? (
         <div className={classes.loadingContainer}>
-          {console.log(isLoading)}
           <span></span>
         </div>
       ) : (

@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signOut,
+.favourites,
+.profileLogo {
+  width: 2.3rem;
+  height: 2.3rem;
+  margin: 0 0 0 0.8rem;
+}
+
+.signOut img,
+.favourites img,
+.profileLogo img {
+  width: 2.3rem;
+  height: 2.3rem;
+  cursor: pointer;
+}
+
+.profileLogo img{
+    border-radius: 50%;
+}
+
+.signOut img:hover,
+.favourites img:hover,
+.profileLogo img:hover {
+  transform: scale(1.1);
+}

@@ -1,9 +1,16 @@
 import React, { useContext } from "react";
 import AnimeTitleContext from "../Context/AnimeRender/AnimeRenderContext";
+import FavouriteContext from "../Context/Favourite/FavouriteContext";
+import FavouriteSvg from "../../../assests/Svgs/Favourites/Favourite.svg";
 import classes from "./AnimeCard.module.css";
+import SignContext from "../Context/Sign/SignContext";
+import { initializeApp } from "firebase/app";
+import { getFirestore, getDoc, setDoc, doc } from "firebase/firestore";
 
 const AnimeCard = (props) => {
+  const SignCtx = useContext(SignContext);
   const AnimeRenderCtx = useContext(AnimeTitleContext);
+  const favouriteCtx = useContext(FavouriteContext);
 
   let startDateData, endDateData;
 
@@ -25,6 +32,47 @@ const AnimeCard = (props) => {
     AnimeRenderCtx.setId(props.id);
     AnimeRenderCtx.setDisplay("block");
     AnimeRenderCtx.setHttpRequest(true);
+  };
+
+  const CheckExisted = (data, id) => {
+    let value = false;
+    data.forEach((element) => {
+      if (element === id) {
+        value = true;
+      }
+    });
+    return value;
+  };
+
+  const addFavourite = () => {
+    if (SignCtx.userUid) {
+      favouriteCtx.setData(props.id);
+      const app = initializeApp(SignCtx.firebaseConfig);
+      const db = getFirestore(app);
+      const docRef = doc(db, "Favourites", SignCtx.userUid);
+      getDoc(docRef)
+        .then((response) => {
+          return response.data().favourite;
+        })
+        .then((data) => {
+          if (!CheckExisted(data, props.id)) {
+            setDoc(docRef, { favourite: [...data, props.id] }).catch((err) => {
+              console.log(err);
+            });
+          }
+        })
+        .catch(() => {
+          setDoc(docRef, { favourite: [props.id] })
+            .then((response) => {
+              console.log(response);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+    } else {
+      alert("please Login");
+    }
   };
 
   return (
@@ -64,6 +112,9 @@ const AnimeCard = (props) => {
           ""
         )}
       </div>
+      <span className={classes.addFavourite}>
+        <img onClick={addFavourite} src={FavouriteSvg} alt="favourite"></img>
+      </span>
     </li>
   );
 };

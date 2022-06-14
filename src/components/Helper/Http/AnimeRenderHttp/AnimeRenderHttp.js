@@ -1,9 +1,10 @@
-import { useContext } from "react";
-import AnimeRenderContext from "../../Context/AnimeRender/AnimeRenderContext";
+// import { useContext } from "react";
+// import AnimeRenderContext from "../../Context/AnimeRender/AnimeRenderContext";
 
 let Data;
 
 const AnimeRenderHttp = (id) => {
+
   let query = `
   query ($id: Int) {
     Media(type: ANIME, id:$id) {

@@ -8,6 +8,7 @@ import Top from "./Top/Top";
 import AnimeTitleProvider from "../Helper/Context/AnimeRender/AnimeRenderProvider";
 import SearchContext from "../Helper/Context/Search/SearchContext";
 import RecentCompletedAnime from "./RecentlyCompletedAnime/RecentCompletedAnime";
+import Favourites from "./Favourites/Favourites";
 
 const Body = (props) => {
   const SearchCtx = useContext(SearchContext);
@@ -22,6 +23,7 @@ const Body = (props) => {
         <Genre />
         <GenreRender />
         <AnimeRender />
+      <Favourites />
       </div>
     </AnimeTitleProvider>
     // </React.StrictMode>
