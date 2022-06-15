@@ -53,12 +53,10 @@ const RecentCompletedAnime = () => {
               day
             }
             coverImage {
-              extraLarge
               large
               medium
               color
             }
-            bannerImage
           }
         }
       }

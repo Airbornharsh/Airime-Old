@@ -23,16 +23,17 @@ const SignnedIn = () => {
 
   const displayFavourite = () => {
     if (SignCtx.userUid) {
+      favouriteCtx.setIsLoading(true);
       const app = initializeApp(SignCtx.firebaseConfig);
       const db = getFirestore(app);
       const docRef = doc(db, "Favourites", SignCtx.userUid);
       getDoc(docRef)
         .then((snapshot) => {
+          favouriteCtx.setIsLoading(false);
           favouriteCtx.setData(snapshot.data().favourite);
           favouriteCtx.setDisplay(true);
         })
         .catch((err) => {
-          console.log(err);
         });
     } else {
       alert("please Login");

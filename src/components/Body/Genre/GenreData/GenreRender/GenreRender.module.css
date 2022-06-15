@@ -32,7 +32,11 @@
   width: 2rem;
   z-index: 2;
   margin-top: 2rem;
-  font-size: 1.2rem;
+  font-size: 2rem;
+  background-color: transparent;
+  border: 0px;
+  cursor: pointer;
+  color: whitesmoke;
 }
 
 .right {
@@ -42,5 +46,9 @@
   width: 2rem;
   z-index: 2;
   margin-top: 2rem;
-  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 2rem;
+  border: 0px;
+  color: whitesmoke;
 }

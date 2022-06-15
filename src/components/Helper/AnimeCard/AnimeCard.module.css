@@ -1,6 +1,10 @@
+.mainContainer {
+  list-style: none;
+  position: relative;
+ 
+}
+
 .container {
-  height: 14rem;
-  width: 22rem;
   background-color: rgb(46, 89, 95);
   list-style: none;
   display: flex;
@@ -12,12 +16,13 @@
   padding: 0 0 0 0.5rem;
   color: rgb(255, 255, 255);
   border-radius: 0.3rem;
-  position: relative;
+  height: 14rem;
+  width: 22rem;
 }
 
-.imgContainer{
+.imgContainer {
   height: 13rem;
-overflow: hidden;
+  overflow: hidden;
 }
 
 .imgContainer img {
@@ -86,13 +91,13 @@ overflow: hidden;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.addFavourite{
+.addFavourite {
   position: absolute;
-  right: 0.2rem;
-  top: 0.2rem;
+  right: 0.6rem;
+  top: 0.6rem;
 }
 
-.addFavourite img{
+.addFavourite img {
   width: 1.7rem;
   height: 1.7rem;
   cursor: pointer;

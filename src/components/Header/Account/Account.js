@@ -18,8 +18,6 @@ const Account = () => {
 
   const [user] = useAuthState(auth);
 
-  console.log("SHIT");
-
   if (user) {
     SignCtx.setUserUid(user.uid);
     SignCtx.setUserPhotoUrl(user.photoURL);

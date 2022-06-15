@@ -23,13 +23,11 @@ const SearchResults = () => {
             native
           }
           coverImage {
-            extraLarge
             large
             medium
             color
           }
           description
-          bannerImage
         }
       }
     }

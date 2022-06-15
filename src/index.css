@@ -1,9 +1,10 @@
 * {
   padding: 0;
   margin: 0;
+  transition: all 1s;
 }
 
-*::-webkit-scrollbar{
+*::-webkit-scrollbar {
   width: 0;
 }
 

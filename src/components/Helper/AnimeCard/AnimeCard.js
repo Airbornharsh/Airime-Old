@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import AnimeTitleContext from "../Context/AnimeRender/AnimeRenderContext";
-import FavouriteContext from "../Context/Favourite/FavouriteContext";
 import FavouriteSvg from "../../../assests/Svgs/Favourites/Favourite.svg";
 import classes from "./AnimeCard.module.css";
 import SignContext from "../Context/Sign/SignContext";
@@ -10,7 +9,6 @@ import { getFirestore, getDoc, setDoc, doc } from "firebase/firestore";
 const AnimeCard = (props) => {
   const SignCtx = useContext(SignContext);
   const AnimeRenderCtx = useContext(AnimeTitleContext);
-  const favouriteCtx = useContext(FavouriteContext);
 
   let startDateData, endDateData;
 
@@ -46,7 +44,6 @@ const AnimeCard = (props) => {
 
   const addFavourite = () => {
     if (SignCtx.userUid) {
-      favouriteCtx.setData(props.id);
       const app = initializeApp(SignCtx.firebaseConfig);
       const db = getFirestore(app);
       const docRef = doc(db, "Favourites", SignCtx.userUid);
@@ -76,45 +73,47 @@ const AnimeCard = (props) => {
   };
 
   return (
-    <li onClick={AnimeRenderFn} className={classes.container}>
-      <div className={classes.imgContainer}>
-        <img src={props.imageUrl} alt=""></img>
-      </div>
-      <div className={classes.dataContainer}>
-        <h3>{props.titleEnglish}</h3>
-        <h3>({props.titleRomaji})</h3>
-        {props.startDate && props.endDate ? (
-          <div className={classes.date}>
-            {props.startDate ? (
-              <div className={classes.startDate}>
-                Started on:
-                <p>{startDateData}</p>
-              </div>
-            ) : (
-              ""
-            )}
-            {props.endDate ? (
-              <div className={classes.endDate}>
-                Completed on:
-                <p>{endDateData}</p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        ) : (
-          ""
-        )}
-
-        {props.description ? (
-          <p className={classes.description}>{props.description}</p>
-        ) : (
-          ""
-        )}
-      </div>
+    <li className={classes.mainContainer}>
       <span className={classes.addFavourite}>
         <img onClick={addFavourite} src={FavouriteSvg} alt="favourite"></img>
       </span>
+      <div onClick={AnimeRenderFn} className={classes.container}>
+        <div className={classes.imgContainer}>
+          <img src={props.imageUrl} alt="" />
+        </div>
+        <div className={classes.dataContainer}>
+          <h3>{props.titleEnglish}</h3>
+          <h3>({props.titleRomaji})</h3>
+          {props.startDate && props.endDate ? (
+            <div className={classes.date}>
+              {props.startDate ? (
+                <div className={classes.startDate}>
+                  Started on:
+                  <p>{startDateData}</p>
+                </div>
+              ) : (
+                ""
+              )}
+              {props.endDate ? (
+                <div className={classes.endDate}>
+                  Completed on:
+                  <p>{endDateData}</p>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          ) : (
+            ""
+          )}
+
+          {props.description ? (
+            <p className={classes.description}>{props.description}</p>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
     </li>
   );
 };

@@ -10,7 +10,7 @@
   left: 0;
   top: 0;
   display: block;
-  z-index: 3;
+  z-index: 5;
 }
 
 .closeContainer {

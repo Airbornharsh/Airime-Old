@@ -48,13 +48,11 @@ const GenreRender = (props) => {
             native
           }
           coverImage {
-            extraLarge
             large
             medium
             color
           }
           description
-          bannerImage
           genres
         }
       }

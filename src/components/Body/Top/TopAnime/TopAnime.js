@@ -40,14 +40,11 @@ const TopAnime = () => {
             native
           }
           coverImage {
-            extraLarge
             large
             medium
             color
           }
           description
-          bannerImage
-          popularity
         }
       }
     }
