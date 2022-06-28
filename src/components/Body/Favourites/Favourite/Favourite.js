@@ -1,11 +1,16 @@
-import { useState, useEffect, Fragment, useContext } from "react";
+import { useState, useEffect, Fragment, useContext, createRef } from "react";
 import AnimeRenderContext from "../../../Helper/Context/AnimeRender/AnimeRenderContext";
 import classes from "./Favourite.module.css";
+import { initializeApp } from "firebase/app";
+import { getFirestore, getDoc, setDoc, doc } from "firebase/firestore";
+import SignContext from "../../../Helper/Context/Sign/SignContext";
 
 const Favourite = (props) => {
   const [favouriteData, setFavouriteData] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const AnimeRenderCtx = useContext(AnimeRenderContext);
+  const SignCtx = useContext(SignContext);
+  const li = createRef();
 
   useEffect(() => {
     setIsLoading(true);
@@ -60,6 +65,42 @@ const Favourite = (props) => {
       });
   }, [props.id]);
 
+  const RemoveItem = (data, id) => {
+    let newData = [];
+    data.forEach((element) => {
+      if (element !== id) {
+        newData.push(element);
+      }
+    });
+    return newData;
+  };
+
+  const removeFavourite = () => {
+    const app = initializeApp(SignCtx.firebaseConfig);
+    const db = getFirestore(app);
+    const docRef = doc(db, "Favourites", SignCtx.userUid);
+    getDoc(docRef)
+      .then((response) => {
+        return response.data().favourite;
+      })
+      .then((data) => {
+        setDoc(docRef, { favourite: RemoveItem(data, props.id) })
+          .then(li.current.remove())
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch(() => {
+        setDoc(docRef, { favourite: [props.id] })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+  };
+
   const AnimeRenderFn = () => {
     AnimeRenderCtx.setId(props.id);
     AnimeRenderCtx.setDisplay("block");
@@ -67,24 +108,32 @@ const Favourite = (props) => {
   };
 
   return (
-    <li className={classes.container}>
+    <li ref={li} className={classes.container}>
       {isLoading ? (
         <div className={classes.loadingContainer}>
           <span></span>
         </div>
       ) : (
         <Fragment>
+          <span onClick={removeFavourite} className={classes.removeFavourite}>
+            <button>X</button>
+          </span>
           {favouriteData ? (
-            <div onClick={AnimeRenderFn} className={classes.contentContainer}>
-              <img
-                src={favouriteData.coverImage.large}
-                alt="FavouriteAnimeImage"
-              />
-              <h3>
-                {favouriteData.title.english
-                  ? favouriteData.title.english
-                  : favouriteData.title.romaji}
-              </h3>
+            <div className={classes.contentContainer}>
+              <div
+                onClick={AnimeRenderFn}
+                className={classes.mainContentContainer}
+              >
+                <img
+                  src={favouriteData.coverImage.large}
+                  alt="FavouriteAnimeImage"
+                />
+                <h3>
+                  {favouriteData.title.english
+                    ? favouriteData.title.english
+                    : favouriteData.title.romaji}
+                </h3>
+              </div>
             </div>
           ) : (
             ""

@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .loadingContainer {
@@ -70,17 +71,39 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  position: relative;
+}
+
+.removeFavourite {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.removeFavourite button {
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: 0;
+  font-size: 1.5rem;
+}
+
+.mainContentContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
   overflow: hidden;
 }
 
-.contentContainer img {
+.mainContentContainer img {
   width: 12rem;
   height: 16rem;
   aspect-ratio: 3/4;
   /* object-fit: contain; */
 }
 
-.contentContainer h3 {
+.mainContentContainer h3 {
   font-size: 0.8rem;
   color: white;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
